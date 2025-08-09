@@ -7,11 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Abstract
 {
-    public interface IGuideDal
-    {
-        void Insert(Guide guide);   
-        void Delete(Guide guide);
-        void Update(Guide guide);   
-        List<Guide> GetList();
+    public interface IGuideDal : IGenericDal<Guide>
+    {        
     }
 }
