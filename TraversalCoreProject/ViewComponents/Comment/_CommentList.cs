@@ -11,7 +11,7 @@ namespace TraversalCoreProject.ViewComponents.Comment
         public IViewComponentResult Invoke(int id)
         {
             var values = commentManager.TGetDestinationById(id);
-            return View();
+            return View(values);
         }
     }
 }
