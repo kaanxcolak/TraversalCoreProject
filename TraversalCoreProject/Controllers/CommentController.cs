@@ -17,10 +17,11 @@ namespace TraversalCoreProject.Controllers
         }
 
         [HttpPost]
-        public PartialViewResult AddComment(Comment p)
+        public IActionResult AddComment(Comment p)
         {
             p.CommentDate = Convert.ToDateTime(DateTime.Now.ToShortDateString());
             p.CommentState = true;
+            p.DestinationID = 3;
             commentManager.TAdd(p);
             return PartialView();
         }
