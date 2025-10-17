@@ -11,7 +11,7 @@ namespace TraversalCoreProject.Models
         public string Surname { get; set; }
 
         [Required(ErrorMessage ="Lütfen kullanıcı adınızı giriniz")]
-        public string Userame { get; set; }
+        public string Username { get; set; }
 
         [Required(ErrorMessage ="Lütfen mail adresini giriniz")]
         public string Mail { get; set; }
