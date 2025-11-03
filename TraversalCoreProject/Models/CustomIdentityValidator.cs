@@ -26,7 +26,7 @@ namespace TraversalCoreProject.Models
             return new IdentityError()
             {
                 Code = "PasswordRequiresLower",
-                Description = $"Parola en az 1 küçük harf içermelidir"
+                Description = $"Parola en az 1 küçük harf içermelidir" 
             };
 
         }
