@@ -59,5 +59,23 @@ namespace TraversalCoreProject.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public async Task<IActionResult> SignIn(UserSignInViewModel p)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await _signInManager.PasswordSignInAsync(p.username, p.password, false, true);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index", "Destination");
+                }
+                else
+                {
+                    return RedirectToAction("SignIn","Login");
+                }
+            }
+            return View();
+        }
     }
 }
