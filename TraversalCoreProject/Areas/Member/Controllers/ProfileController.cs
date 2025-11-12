@@ -6,6 +6,8 @@ using TraversalCoreProject.Areas.Member.Models;
 
 namespace TraversalCoreProject.Areas.Member.Controllers
 {
+    [Area("Member")]
+    [Route("Member/[controller]/[action]")]
     public class ProfileController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
