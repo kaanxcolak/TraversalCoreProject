@@ -1,4 +1,6 @@
-﻿namespace TraversalCoreProject.Areas.Member.Models
+﻿using Microsoft.AspNetCore.Http;
+
+namespace TraversalCoreProject.Areas.Member.Models
 {
     public class UserEditViewModel
     {
@@ -8,7 +10,9 @@
         public string confirmpassword { get; set; }
         public string phonenumber { get; set; }
         public string mail { get; set; }
-        public string ımageurl { get; set; }
+        public string imageurl { get; set; }
+        public IFormFile Image { get; set; }
+
 
     }
 }
