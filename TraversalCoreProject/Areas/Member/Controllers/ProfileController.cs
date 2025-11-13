@@ -1,6 +1,9 @@
 ﻿using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.IO;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using TraversalCoreProject.Areas.Member.Models;
 
@@ -28,6 +31,24 @@ namespace TraversalCoreProject.Areas.Member.Controllers
             userEditViewModel.mail = values.Email;
             
             return View(userEditViewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Index(UserEditViewModel p)
+        {
+            var user = await _userManager.FindByNameAsync(User.Identity.Name);
+            if (p.Image != null)
+            {
+                var resource = Directory.GetCurrentDirectory();
+                var extension = Path.GetExtension(p.Image.FileName);
+                var imagename = Guid.NewGuid() + extension;
+                var saveLocation = resource + "/wwwroot/userimages/" + imagename;
+                var stream = new FileStream(saveLocation, FileMode.Create);
+                await p.Image.CopyToAsync(stream);
+                user.ImageUrl = imagename;
+            }
+            user.Name = p.name;
+            user.Surname = p.surname;
         }
     }
 }
