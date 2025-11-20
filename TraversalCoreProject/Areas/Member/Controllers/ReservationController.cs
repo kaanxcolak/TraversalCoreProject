@@ -1,11 +1,18 @@
-﻿using EntityLayer.Concrete;
+﻿using BusinessLayer.Concrete;
+using DataAccessLayer.EntityFramework;
+using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace TraversalCoreProject.Areas.Member.Controllers
 {
     [Area("Member")]
     public class ReservationController : Controller
     {
+        DestinationManager destinationManager = new DestinationManager(new EfDestinationDal());
+        ReservationManager reservationManager = new ReservationManager(new EfReservationDal());
         public IActionResult MyCurrentReservation()
         {
             return View();
@@ -19,7 +26,14 @@ namespace TraversalCoreProject.Areas.Member.Controllers
         [HttpGet]
         public IActionResult NewReservation()
         {
-            return View();
+            List<SelectListItem> values = (from x in destinationManager.GetList() select new SelectListItem
+            {
+                Text = x.City,
+                Value = x.DestinationID.ToString()
+            }).ToList();
+            ViewBag.v = values;                       
+
+            return View(); 
         }
 
         [HttpPost]
