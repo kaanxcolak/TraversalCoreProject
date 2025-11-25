@@ -39,7 +39,7 @@ namespace TraversalCoreProject.Areas.Member.Controllers
         [HttpPost]
         public IActionResult NewReservation(Reservation p)
         {
-            p.AppUserId = 3;
+            p.AppUserId = 2;
             reservationManager.TAdd(p);
             return RedirectToAction("MyCurrentReservation"); 
         }
